@@ -1,12 +1,13 @@
-# Welcame to Login System Version 2.0 .
+from random import random
+# Welcame to Login System Version 3.0 .   
 with open("serectxpathlogqual.tid") as IDpath:
     log_ID = str(IDpath.readline())
-    print(log_ID)
+
 with open("serectxpathlogpassqual.tid") as PASSpath:
     log_PASS = str(PASSpath.readline())
-    print(log_PASS)
+
 # we are create login system in python by simple Logic.
-print("Welcame to Login System Version 2.0\n")
+print("Welcame to Login System Version 3.0\n")
 print("© Copyright 2020 Ti Corporation.\n")
 # we put User Inputs in Varibles.
 print("If you want to exit this program plase press Q\n")
@@ -24,6 +25,8 @@ if (log_ID == ID_system):
     PASS_system = input("Please Enter Your PASSWORD.\n")
     print("\n")
     while PASS_system != log_PASS:
+        if PASS_system == "q":
+            break
         print("Acess Not Allowed\n")
         PASS_system = input("Please Enter Your PASSWORD.\n")
         print("\n")
@@ -33,12 +36,30 @@ if (log_ID == ID_system):
         print("If you want to change the ID and Password. Please press C \n")
         print("*******************************************\n")
         change = input()
+        #we take input form user to change the ID or Password
         if change == "c":
-            value = input("Enter New ID = \n")
+            value = input("Enter New ID -> ")
             with open("serectxpathlogqual.tid", "w") as op:
                 op.write(value)
             print("Your ID is changed Successfully !")
-            value = input("Enter New Password = \n")
-            with open("serectxpathlogpassqual.tid", "w") as op:
-                op.write(value)
-            print("Your Password is changed Successfully !")
+            #AGP is a Varible that store the user input Yes or No
+            AGP = input("You Want to Genrate Password Automatic (y/n)")
+            while AGP != "y" or "n":
+                if AGP == "y":
+                    value = random()
+                    print(f"This Your Password -> {value}")
+                    with open("serectxpathlogpassqual.tid", "w") as op:
+                        op.write(str(value))
+                    print("Your Password is changed Successfully !")
+                    break
+                elif AGP =="n":
+                    value = input("Enter New Password -> ")
+                    with open("serectxpathlogpassqual.tid", "w") as op:
+                        op.write(str(value))
+                    print("Your Password is changed Successfully !")
+                    break
+                else:
+                    if AGP != "y" or "n":
+                        print("You enter invaild input please try again.\n")
+                        AGP = input("You Want to Genrate Password Automatic (y/n)")
+                    
